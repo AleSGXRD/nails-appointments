@@ -22,6 +22,6 @@ public class NailService {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ServiceDuration duration;
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface INailService extends JpaRepository<NailService, String> {
+public interface INailServiceRepository extends JpaRepository<NailService, String> {
 }
