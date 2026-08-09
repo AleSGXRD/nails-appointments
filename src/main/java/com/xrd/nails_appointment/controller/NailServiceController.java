@@ -7,6 +7,8 @@ import com.xrd.nails_appointment.service.NailServiceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +29,11 @@ public class NailServiceController {
     }
 
     @GetMapping
-    public List<NailServiceResponseDTO> findAll(){
-        return nailService.findAll();
+    public Page<NailServiceResponseDTO> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ){
+        return nailService.findAll(page, size);
     }
 
     @GetMapping("/{id}")
@@ -37,8 +42,10 @@ public class NailServiceController {
     }
 
     @PatchMapping("/{id}")
-    public NailServiceResponseDTO update(@PathVariable String id,
-                                         @Valid @RequestBody UpdateNailServiceDTO dto){
+    public NailServiceResponseDTO update(
+            @PathVariable String id,
+            @Valid @RequestBody UpdateNailServiceDTO dto
+        ){
         return nailService.update(id, dto);
     }
 

@@ -8,6 +8,9 @@ import com.xrd.nails_appointment.mapper.NailServiceMapper;
 import com.xrd.nails_appointment.model.NailService;
 import com.xrd.nails_appointment.repository.INailServiceRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -28,8 +31,12 @@ public class NailServiceService {
         return mapper.toResponseDto(saved);
     }
 
-    public List<NailServiceResponseDTO> findAll(){
-        return repository.findAll().stream().map(mapper::toResponseDto).toList();
+    public Page<NailServiceResponseDTO> findAll(int page, int size){
+        Pageable pageable = PageRequest.of(
+                page,
+                size
+        );
+        return repository.findAll(pageable).map(mapper::toResponseDto);
     }
 
     public NailServiceResponseDTO findOne(String id){

@@ -1,10 +1,7 @@
 package com.xrd.nails_appointment.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,12 +16,13 @@ import java.util.List;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     @ManyToOne()
-    @JoinColumn(name = "clientId", nullable = false)
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     @ManyToMany
