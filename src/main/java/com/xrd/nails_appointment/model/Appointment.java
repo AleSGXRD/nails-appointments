@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -38,7 +40,7 @@ public class Appointment {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<AppointmentRecord> records = new ArrayList<>();
+    private Set<AppointmentRecord> records = new HashSet<>();
 
     @Column(nullable = false)
     private LocalDate date;
