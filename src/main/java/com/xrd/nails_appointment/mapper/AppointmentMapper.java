@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -21,6 +22,7 @@ public class AppointmentMapper {
 
     private final ClientMapper clientMapper;
     private final NailServiceMapper nailServiceMapper;
+    private final AppointmentRecordMapper appointmentRecordMapper;
 
     public Appointment toEntity(
             CreateAppointmentDTO dto,
@@ -64,7 +66,10 @@ public class AppointmentMapper {
                         .stream()
                         .map(nailServiceMapper::toResponseDto)
                         .toList(),
-                new HashSet<>() // PENDIENT TO DO
+                entity.getRecords()
+                        .stream()
+                        .map(appointmentRecordMapper::toResponseDto)
+                        .collect(Collectors.toSet())// PENDIENT TO DO
         );
     }
 

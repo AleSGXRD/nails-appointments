@@ -11,7 +11,6 @@ import java.util.List;
 public record UpdateAppointmentDTO(
         String clientId,
         List<String> servicesId,
-        List<String> recordsId,
         LocalDate date,
         LocalTime startTime
 ) {

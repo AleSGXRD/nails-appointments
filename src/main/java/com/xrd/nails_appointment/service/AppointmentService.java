@@ -85,7 +85,7 @@ public class AppointmentService {
             if(!oldClientId.equals(dto.clientId())){
                 Client client = clientRepository.findById(dto.clientId()).orElseThrow(
                         () ->
-                                new ResourceNotFoundException("Client not found with id : " + id)
+                                new ResourceNotFoundException("Client not found with id : " + dto.clientId())
                 );
 
                 entity.setClient(client);
@@ -115,7 +115,7 @@ public class AppointmentService {
         }
 
         Appointment updated = appointmentRepository.save(entity);
-        // TODO : Records still implemented yet
+
         return mapper.toResponseDTO(updated);
     }
 

@@ -1,16 +1,14 @@
 package com.xrd.nails_appointment.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @EntityListeners(EntityListeners.class)
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AppointmentRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,7 +19,7 @@ public class AppointmentRecord {
     private String notes;
     private String imageUrl;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "appointment_id", nullable = false)
     private Appointment appointment;
 }
